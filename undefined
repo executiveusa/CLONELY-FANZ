@@ -1,0 +1,39 @@
+import { AvatarGroup } from '@/components/ui/avatar-group';
+
+export default function Story() {
+  const avatars = [
+    {
+      src: 'https://api.dicebear.com/7.x/avataaars/svg?seed=1',
+      alt: 'John D',
+      fallback: 'JD'
+    },
+    {
+      src: 'https://api.dicebear.com/7.x/avataaars/svg?seed=2',
+      alt: 'Sarah M',
+      fallback: 'SM'
+    },
+    {
+      src: 'https://api.dicebear.com/7.x/avataaars/svg?seed=3',
+      alt: 'Mike R',
+      fallback: 'MR'
+    },
+    {
+      src: 'https://api.dicebear.com/7.x/avataaars/svg?seed=4',
+      alt: 'Lisa K',
+      fallback: 'LK'
+    },
+    {
+      src: 'https://api.dicebear.com/7.x/avataaars/svg?seed=5',
+      alt: 'Tom B',
+      fallback: 'TB'
+    }
+  ];
+
+  return (
+    <div className="p-8 flex flex-col gap-8 bg-background">
+      <AvatarGroup avatars={avatars} />
+      <AvatarGroup avatars={avatars} max={3} size={48} />
+      <AvatarGroup avatars={avatars.slice(0, 3)} size={32} />
+    </div>
+  );
+}

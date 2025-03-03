@@ -1,0 +1,17 @@
+runtime: nodejs18
+
+env_variables:
+  VITE_SUPABASE_URL: "your-supabase-url"
+  VITE_SUPABASE_ANON_KEY: "your-supabase-anon-key"
+
+handlers:
+  - url: /api/.*
+    script: auto
+
+  - url: /(.*\..+)$
+    static_files: dist/\1
+    upload: dist/(.*\..+)$
+
+  - url: /.*
+    static_files: dist/index.html
+    upload: dist/index.html
