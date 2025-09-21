@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Avatar {
+  id               String   @id @default(uuid())
+  name             String
+  description      String
+  imageUrl         String   @map("image_url")
+  niche            String
+  isNsfw           Boolean  @default(false) @map("is_nsfw")
+  redditAutomation Boolean  @default(false) @map("reddit_automation")
+  subscriberCount  Int      @default(0) @map("subscriber_count")
+  messageCount     Int      @default(0) @map("message_count")
+  likeCount        Int      @default(0) @map("like_count")
+  userId           String?  @map("user_id")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  @@map("avatars")
+}
