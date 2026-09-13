@@ -54,7 +54,7 @@
     "express": "^4.22.1",
     "framer-motion": "^11.18.2",
     "lucide-react": "^0.394.0",
-    "qs": "^6.14.2",
+    "qs": "^6.16.0",
     "react": "^18.2.0",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.2.0",
