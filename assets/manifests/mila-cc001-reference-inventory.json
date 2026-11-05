@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "character_id": "CC-001",
+  "name": "Mila",
+  "canonical_repo": "executiveusa/cryptocuties",
+  "canonical_path": "icm/characters/CC-001-MILA/",
+  "higgsfield_reference_element_id": "e2fdd869-0444-4faa-ac94-fc29dfd8d9fb",
+  "status": "reference_inventory_only_not_public_hero_approved",
+  "source_media": [
+    {
+      "id": "d981bf7c-3fa5-4708-bb52-328ff6e51273",
+      "type": "media_input",
+      "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/d981bf7c-3fa5-4708-bb52-328ff6e51273.png"
+    },
+    {
+      "id": "98736c93-af5c-406d-b9b8-3047124da5ba",
+      "type": "media_input",
+      "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/98736c93-af5c-406d-b9b8-3047124da5ba.png"
+    },
+    {
+      "id": "ec5b3fc6-86ff-47fc-9e0d-93b5e88feceb",
+      "type": "media_input",
+      "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/ec5b3fc6-86ff-47fc-9e0d-93b5e88feceb.png"
+    },
+    {
+      "id": "4cb3758c-1b06-44f6-90a3-444ebaf3e6dc",
+      "type": "media_input",
+      "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/4cb3758c-1b06-44f6-90a3-444ebaf3e6dc.png"
+    }
+  ],
+  "policy": "Do not treat source media as approved public assets. Do not duplicate the private image library or distribute it through the public repo; use approved derivative hashes and controlled asset storage. URLs are inventory references only."
+}
