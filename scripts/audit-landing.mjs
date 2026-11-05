@@ -10,8 +10,8 @@ const doc = read("index.html");
 const pkg = JSON.parse(read("package.json"));
 
 assert(!app.includes("<SplashCursor"), "cursor animation must be removed from public app");
-assert(app.includes("VITE_ENABLE_PRIVATE_STUDIO_ROUTES"), "private route gate missing");
-assert(app.includes("<OwnerOnly>"), "private route auth gate missing");
+assert(!app.includes('"/dashboard"') && !app.includes('"/clonely"'), "private routes must not appear in public bundle");
+assert(!app.includes("MainLayout") && !app.includes("Dashboard"), "legacy modules must be disconnected from public bundle");
 assert(landing.includes("clonely-21-plus-confirmed"), "21+ acknowledgment missing");
 assert(landing.includes("allowedFanvueUrl"), "Fanvue URL validation missing");
 assert(landing.includes('id="disclosure"'), "AI disclosure missing");
@@ -28,4 +28,5 @@ assert(doc.includes("CLONELY FANZ"), "site metadata not rebranded");
 assert(!doc.includes("AI Avatar Creator"), "legacy SEO remains");
 assert(!doc.includes("api.tempolabs.ai"), "external Tempo runtime injection remains");
 assert(pkg.scripts.build.includes("&&"), "build must fail on TypeScript errors");
+assert(pkg.scripts.typecheck.includes("tsconfig.public.json"), "public typecheck entry missing");
 console.log("CLONELY FANZ static release checks: PASS");
