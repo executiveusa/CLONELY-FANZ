@@ -17,6 +17,8 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
+      - name: Check all public dependency vulnerabilities
+        run: npm audit --audit-level=moderate
       - run: npm run typecheck
       - run: npm run build
       - run: npm run lint
