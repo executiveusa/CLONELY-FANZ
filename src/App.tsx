@@ -31,7 +31,8 @@ function App() {
           <div className="min-h-screen bg-background">
             <SplashCursor />
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/legacy" element={<Home />} />
               <Route path="/landing" element={<LandingPage />} />
               <Route
                 path="/dashboard/*"
