@@ -36,3 +36,7 @@
 @media(max-width:760px){.cf-cinema{min-height:690px;align-items:flex-end}.cf-cinema-content{width:100%;padding:55px 24px 55px}.cf-cinema h1{font-size:clamp(68px,12vw,108px)!important}.cf-cinema-poster,.cf-cinema-video{object-position:65% 26%}.cf-film-vignette{background:linear-gradient(0deg,#100d10 0%,#100d10df 21%,#100d105a 53%,#100d102a 100%)}.cf-film-label{margin-bottom:18px}.cf-film-deck{margin:20px 0 23px}.cf-film-edge{display:none}.cf-kiss-flight{left:56%;top:25%}.cf-wordmark span:first-child{font-size:clamp(38px,10vw,72px)}.cf-wordmark span:last-child{font-size:clamp(28px,8vw,54px)}}
 @media(max-width:390px){.cf-cinema{min-height:620px}.cf-cinema-content{padding:36px 18px}.cf-film-actions{gap:14px}.cf-cinema h1{font-size:65px!important}.cf-film-deck{font-size:22px}.cf-film-disclosure{margin-top:25px}}
 @media(prefers-reduced-motion:reduce){.cf-impact-sequence{display:none!important}.cf-cinema-video{display:none!important}.cf-film-button,.cf-replay{transition:none!important}}
+
+/* Optional HyperFrames alpha-video layer. The deterministic SVG/CSS layer is the fallback. */
+.cf-hyperframes-overlay{position:absolute;inset:0;z-index:4;width:100%;height:100%;object-fit:fill;pointer-events:none;background:transparent;mix-blend-mode:normal}
+@media(prefers-reduced-motion:reduce){.cf-hyperframes-overlay{display:none!important}}
