@@ -4,7 +4,10 @@ import "./cinematic-hero.css";
 const DRAFT_VIDEO = "https://d8j0ntlcm91z4.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/hf_20261105_053425_aec257c7-b66c-45d0-8aaa-aad101695819.mp4";
 const previewEnabled = import.meta.env.VITE_MILA_HERO_PREVIEW === "true";
 /** Calibrate after reviewing the actual Mila frame at the end of her kiss. */
-export const KISS_CUE_SECONDS = 5.45;
+const configuredCue = Number(import.meta.env.VITE_MILA_KISS_CUE_SECONDS);
+export const KISS_CUE_SECONDS = Number.isFinite(configuredCue) && configuredCue >= 0 && configuredCue <= 7
+  ? configuredCue
+  : 5.45;
 const OVERLAY_LENGTH_SECONDS = 2.45;
 
 function allowedMediaUrl(value: unknown): string | null {
@@ -200,11 +203,10 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
         </div>
       )}
 
-      {canPlayNow && phase === "active" && overlayUrl && !overlayFailed && (
+      {canRenderVideo && overlayUrl && !overlayFailed && (
         <video
-          key={"kiss-overlay-" + sequenceId}
           ref={overlayRef}
-          className="cf-hyperframes-overlay"
+          className={"cf-hyperframes-overlay" + (phase === "active" && canPlayNow ? " cf-hyperframes-overlay--active" : "")}
           src={overlayUrl}
           muted playsInline preload="auto"
           aria-hidden="true" tabIndex={-1}
