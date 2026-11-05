@@ -10,8 +10,9 @@
     "lint": "node scripts/audit-landing.mjs",
     "preview": "vite preview",
     "types:supabase": "npx supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > src/types/supabase.ts",
-    "typecheck": "tsc --noEmit",
-    "audit:landing": "node scripts/audit-landing.mjs"
+    "typecheck": "tsc -p tsconfig.public.json --noEmit",
+    "audit:landing": "node scripts/audit-landing.mjs",
+    "typecheck:legacy": "tsc --noEmit"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
