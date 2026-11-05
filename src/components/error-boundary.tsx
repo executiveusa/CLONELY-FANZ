@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
 
 interface Props {
   children: React.ReactNode;
@@ -27,9 +26,9 @@ export class ErrorBoundary extends React.Component<Props, State> {
           <p className="text-muted-foreground mb-4">
             {this.state.error?.message}
           </p>
-          <Button onClick={() => window.location.reload()} variant="outline">
+          <button type="button" onClick={() => window.location.reload()} style={{ border: "1px solid #eee5dc", padding: "12px 18px", color: "#eee5dc", background: "transparent", cursor: "pointer" }}>
             Try again
-          </Button>
+          </button>
         </div>
       );
     }
