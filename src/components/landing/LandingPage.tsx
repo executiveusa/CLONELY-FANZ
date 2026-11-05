@@ -35,7 +35,9 @@ function allowedHeroUrl(value: string | undefined): string | null {
 }
 
 const fanvueUrl = allowedFanvueUrl(FANVUE_URL);
-const heroImage = allowedHeroUrl(MILA_IMAGE);
+const CANON_PREVIEW_POSTER = "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/d981bf7c-3fa5-4708-bb52-328ff6e51273.png";
+const heroImage = allowedHeroUrl(MILA_IMAGE) ??
+  (import.meta.env.VITE_MILA_HERO_PREVIEW === "true" ? CANON_PREVIEW_POSTER : null);
 
 const chapters = [
   {
@@ -125,7 +127,10 @@ export default function LandingPage() {
         <section id="mila" className="clonely-feature" aria-labelledby="clonely-mila-heading">
           <div className="clonely-feature-index"><span>MEET YOUR FIRST CHARACTER</span><span>001 / 001</span></div>
           <div className="clonely-feature-grid">
-            <div className="clonely-feature-art" aria-hidden="true"><span>МИЛА</span><strong>MILA</strong><small>THE ORIGINAL<br/>CC—001</small></div>
+            <div className="clonely-feature-art" aria-hidden="true">
+              {heroImage && <img className="clonely-feature-photo" src={heroImage} alt="" loading="lazy" />}
+              <span>МИЛА</span><strong>MILA</strong><small>THE ORIGINAL<br/>CC—001</small>
+            </div>
             <div className="clonely-feature-content">
               <p className="clonely-kicker">THE FACE OF OUR FIRST COLLECTION</p>
               <h2 id="clonely-mila-heading">She has a name.<br/><em>And a point of view.</em></h2>
