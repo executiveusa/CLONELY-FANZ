@@ -2,7 +2,7 @@
 .cf-cinema{position:relative;isolation:isolate;min-height:min(880px,calc(100svh - 85px));background:#100d10;overflow:hidden;display:flex;align-items:center;color:#eee5dc}
 .cf-cinema-poster,.cf-cinema-video,.cf-film-vignette,.cf-cinema-placeholder{position:absolute;inset:0;width:100%;height:100%}
 .cf-cinema-poster,.cf-cinema-video{object-fit:cover;object-position:72% 36%}
-.cf-cinema-video{z-index:-2;opacity:0;transition:opacity .65s ease}
+.cf-cinema-video{z-index:-2;opacity:0;transition:opacity .4s cubic-bezier(.23,1,.32,1)}
 .cf-cinema-video--ready{opacity:1}
 .cf-cinema-poster{z-index:-3}
 .cf-cinema-placeholder{z-index:-4;display:grid;place-items:center;background:radial-gradient(circle at 68% 44%,#5a2731,#171016 54%,#100d10)}
@@ -16,27 +16,36 @@
 .cf-film-deck{font-family:Georgia,serif;font-size:clamp(22px,2.3vw,33px);font-weight:400;line-height:1.24;margin:36px 0 34px;color:#eee5dc}
 .cf-film-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
 .cf-film-button{display:inline-flex;align-items:center;gap:30px;background:#eee5dc;color:#100d10!important;min-height:53px;padding:12px 21px;font-size:13px;font-weight:650;transition:background .2s,transform .2s}
-.cf-film-button:hover{background:white;transform:translateY(-2px)}
+
 .cf-film-text-link{font-size:13px;border-bottom:1px solid #a89397;padding:8px 0;color:#ded1ce!important}
 .cf-film-disclosure{color:#c3adb0;font-size:11px;margin:46px 0 0;letter-spacing:.04em}
 .cf-film-edge{position:absolute;right:24px;bottom:34px;font-size:10px;letter-spacing:.2em;writing-mode:vertical-rl;color:#e3d4d09c}
 .cf-replay{margin-top:18px;background:transparent;color:#ead8d9;border:0;border-bottom:1px solid #ba8c95;cursor:pointer;padding:8px 0;font-size:11px;letter-spacing:.04em}
 .cf-preview-flag{position:absolute;bottom:8px;right:8px;background:#100d10e0;border:1px solid #bd8492;padding:6px 10px;color:#fbdfe5;font-size:9px;letter-spacing:.03em;z-index:9}
-.cf-impact-sequence{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
-.cf-kiss-flight{position:absolute;left:68%;top:37%;width:110px;transform-origin:center;opacity:0;filter:drop-shadow(0 5px 18px #a82e4977);animation:cf-fly .9s cubic-bezier(.34,.11,.44,1) 0s both}
+.cf-impact-sequence{position:absolute;inset:0;z-index:6;pointer-events:none;overflow:hidden}
+.cf-kiss-flight{position:absolute;left:68%;top:37%;width:110px;transform-origin:center;opacity:0;filter:drop-shadow(0 3px 10px #a82e4955);animation:cf-fly .9s cubic-bezier(.34,.11,.44,1) 0s both}
 .cf-lips{display:block;width:100%}
 .cf-impact-glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 47%,#ad224a70,transparent 42%);opacity:0;animation:cf-flash .85s ease .75s both}
-.cf-impact-wordmark{position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:#100d10b8;opacity:0;animation:cf-reveal 1.35s ease .95s both}
+.cf-impact-wordmark{position:absolute;inset:0;display:grid;place-items:center;text-align:center;background:#100d10e0;opacity:0;animation:cf-reveal 1.35s ease .95s both}
 .cf-wordmark{display:inline-flex;align-items:center;justify-content:center;flex-direction:column;gap:0;font-family:"Bodoni Moda",Didot,"Times New Roman",Georgia,serif;color:#eee5dc;font-weight:400;line-height:.88;letter-spacing:.13em}
 .cf-wordmark span:first-child{font-size:clamp(54px,8vw,130px)}
 .cf-wordmark span:last-child{font-size:clamp(44px,6vw,102px);letter-spacing:.27em;margin-left:.27em}
 @keyframes cf-fly{0%{opacity:0;transform:translate3d(-25%,-20%,0) scale(.28) rotate(-12deg)}20%{opacity:1}78%{opacity:1}100%{opacity:0;transform:translate3d(-180%,-20%,0) scale(4.7) rotate(0)}}
 @keyframes cf-flash{0%,20%{opacity:0}43%{opacity:.85}100%{opacity:0}}
-@keyframes cf-reveal{0%{opacity:0;filter:blur(18px);transform:scale(1.04)}30%,65%{opacity:1;filter:blur(0);transform:scale(1)}100%{opacity:0;filter:blur(6px);transform:scale(.99)}}
+@keyframes cf-reveal{0%{opacity:0;transform:scale(.965)}30%,65%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.99)}}
 @media(max-width:760px){.cf-cinema{min-height:690px;align-items:flex-end}.cf-cinema-content{width:100%;padding:55px 24px 55px}.cf-cinema h1{font-size:clamp(68px,12vw,108px)!important}.cf-cinema-poster,.cf-cinema-video{object-position:65% 26%}.cf-film-vignette{background:linear-gradient(0deg,#100d10 0%,#100d10df 21%,#100d105a 53%,#100d102a 100%)}.cf-film-label{margin-bottom:18px}.cf-film-deck{margin:20px 0 23px}.cf-film-edge{display:none}.cf-kiss-flight{left:56%;top:25%}.cf-wordmark span:first-child{font-size:clamp(38px,10vw,72px)}.cf-wordmark span:last-child{font-size:clamp(28px,8vw,54px)}}
 @media(max-width:390px){.cf-cinema{min-height:620px}.cf-cinema-content{padding:36px 18px}.cf-film-actions{gap:14px}.cf-cinema h1{font-size:65px!important}.cf-film-deck{font-size:22px}.cf-film-disclosure{margin-top:25px}}
 @media(prefers-reduced-motion:reduce){.cf-impact-sequence{display:none!important}.cf-cinema-video{display:none!important}.cf-film-button,.cf-replay{transition:none!important}}
 
 /* Optional HyperFrames alpha-video layer. The deterministic SVG/CSS layer is the fallback. */
-.cf-hyperframes-overlay{position:absolute;inset:0;z-index:4;width:100%;height:100%;object-fit:fill;pointer-events:none;background:transparent;mix-blend-mode:normal}
+.cf-hyperframes-overlay{position:absolute;inset:0;z-index:6;width:100%;height:100%;object-fit:fill;pointer-events:none;background:transparent;mix-blend-mode:normal}
 @media(prefers-reduced-motion:reduce){.cf-hyperframes-overlay{display:none!important}}
+
+/* Emil Kowalski design-engineering audit: intentional micro-interactions only. */
+.cf-film-button,.cf-replay{touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.cf-film-button{transition:transform .14s cubic-bezier(.23,1,.32,1),background-color .14s ease-out}
+.cf-film-button:active,.cf-replay:active{transform:scale(.97)}
+.cf-kiss-flight,.cf-impact-wordmark,.cf-impact-glow{will-change:transform,opacity}
+@media(hover:hover) and (pointer:fine){.cf-film-button:hover{background:#fff}.cf-film-text-link:hover{color:#fff!important}.cf-replay:hover{color:#fff}}
+@media(max-width:760px){.cf-cinema-content{padding-bottom:calc(55px + env(safe-area-inset-bottom,0px))}}
+@media(prefers-reduced-motion:reduce){.cf-kiss-flight,.cf-impact-wordmark,.cf-impact-glow{will-change:auto}}
