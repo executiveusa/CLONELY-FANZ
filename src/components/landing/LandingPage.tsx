@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import "./landing-page.css";
+import CinematicHero, { ClonelyWordmark } from "./CinematicHero";
 
 /**
  * CLONELY-FANZ public editorial front door.
@@ -108,7 +109,7 @@ export default function LandingPage() {
       <a className="clonely-skip" href="#main">Skip to content</a>
       <header className="clonely-header" inert={ageGateReady && !ageConfirmed} aria-hidden={ageGateReady && !ageConfirmed}>
         <a className="clonely-wordmark" href="#top" aria-label="Clonely Fanz, back to top">
-          CLONELY<span>FANZ</span><span className="clonely-wordmark-dot" aria-hidden="true">.</span>
+          <ClonelyWordmark className="cf-wordmark--header" />
         </a>
         <nav className="clonely-nav" aria-label="Main navigation">
           <a href="#mila">Meet Mila</a>
@@ -119,33 +120,8 @@ export default function LandingPage() {
       </header>
 
       <main id="main" inert={ageGateReady && !ageConfirmed} aria-hidden={ageGateReady && !ageConfirmed}>
-        <section className="clonely-hero" aria-labelledby="clonely-hero-title">
-          <div className="clonely-hero-copy">
-            <div className="clonely-eyebrow"><span className="clonely-signal" /> AN ORIGINAL SYNTHETIC CREATOR STUDIO <span className="clonely-eyebrow-rule" /></div>
-            <p className="clonely-overline">Introducing CC-001 / Mila</p>
-            <h1 id="clonely-hero-title">NOT BORN.<br/><em>CREATED</em><span className="clonely-period">.</span></h1>
-            <p className="clonely-hero-deck">Meet Mila. A fictional AI personality with a distinct style, point of view, and a world of her own.</p>
-            <div className="clonely-hero-actions">
-              <a className="clonely-button clonely-button-primary" href="#mila">Discover Mila <span aria-hidden="true">↗</span></a>
-              <a className="clonely-text-link" href="#disclosure">How our AI creators work <span aria-hidden="true">→</span></a>
-            </div>
-            <div className="clonely-hero-meta"><span>FICTIONAL AI CHARACTER</span><span>ADULTS 21+</span><span>ENGLISH / SRPSKI</span></div>
-          </div>
-          <div className="clonely-hero-stage" aria-label={heroImage ? "Mila's approved portrait" : "Approved Mila portrait pending"}>
-            <div className="clonely-stage-halo" aria-hidden="true" />
-            <span className="clonely-stage-number" aria-hidden="true">001</span>
-            {heroImage ? (
-              <img src={heroImage} alt="Approved canonical portrait of Mila, a fictional adult AI creator" className="clonely-hero-photo" fetchPriority="high" />
-            ) : (
-              <div className="clonely-stage-pending" role="img" aria-label="Mila portrait awaiting approved canonical image">
-                <span className="clonely-stage-m" aria-hidden="true">M</span>
-                <span className="clonely-stage-pending-label">CANON PORTRAIT AWAITING APPROVAL</span>
-              </div>
-            )}
-            <div className="clonely-stage-signature" aria-hidden="true">MILA</div>
-            <span className="clonely-stage-caption">CHARACTER FILE — CC/001<br/>ORIGINAL SYNTHETIC IDENTITY</span>
-          </div>
-          <span className="clonely-hero-vertical" aria-hidden="true">THE UNREAL, WITH CHARACTER</span>
+        <section className="clonely-cinema-shell" aria-labelledby="clonely-hero-title">
+          <CinematicHero posterUrl={heroImage} canPlay={ageConfirmed && ageGateReady} />
         </section>
 
         <div className="clonely-marquee" aria-label="Original characters, real creative direction, AI disclosed">
@@ -198,7 +174,7 @@ export default function LandingPage() {
         </section>
       </main>
       <footer className="clonely-footer" inert={ageGateReady && !ageConfirmed} aria-hidden={ageGateReady && !ageConfirmed}>
-        <span className="clonely-wordmark">CLONELY<span>FANZ</span>.</span>
+        <ClonelyWordmark className="cf-wordmark--footer" />
         <p>Original virtual personalities. Real creative direction.</p>
         <p>AI-GENERATED / 21+ EXPERIENCE / © {new Date().getFullYear()} CLONELY-FANZ</p>
       </footer>
