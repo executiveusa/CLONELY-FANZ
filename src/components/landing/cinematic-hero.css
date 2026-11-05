@@ -38,7 +38,8 @@
 @media(prefers-reduced-motion:reduce){.cf-impact-sequence{display:none!important}.cf-cinema-video{display:none!important}.cf-film-button,.cf-replay{transition:none!important}}
 
 /* Optional HyperFrames alpha-video layer. The deterministic SVG/CSS layer is the fallback. */
-.cf-hyperframes-overlay{position:absolute;inset:0;z-index:6;width:100%;height:100%;object-fit:fill;pointer-events:none;background:transparent;mix-blend-mode:normal}
+.cf-hyperframes-overlay{position:absolute;inset:0;z-index:6;width:100%;height:100%;object-fit:fill;pointer-events:none;background:transparent;mix-blend-mode:normal;opacity:0}
+.cf-hyperframes-overlay--active{opacity:1}
 @media(prefers-reduced-motion:reduce){.cf-hyperframes-overlay{display:none!important}}
 
 /* Emil Kowalski design-engineering audit: intentional micro-interactions only. */
