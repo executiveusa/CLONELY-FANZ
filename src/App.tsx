@@ -24,6 +24,7 @@ function OwnerOnly({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }
 const showPrivateRoutes = import.meta.env.VITE_ENABLE_PRIVATE_STUDIO_ROUTES === "true";
+function TempoPreviewRoutes() { return useRoutes(routes); }
 
 function App() {
   return (
@@ -48,7 +49,7 @@ function App() {
               )}
               <Route path="*" element={<div className="min-h-screen grid place-items-center bg-[#100d10] text-[#eee5dc]"><a href="/" className="underline">Page not found · Return home</a></div>} />
             </Routes>
-            {import.meta.env.DEV && import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
+            {import.meta.env.DEV && import.meta.env.VITE_TEMPO === "true" && <TempoPreviewRoutes />}
           </div>
         </Suspense>
       </ThemeProvider>
