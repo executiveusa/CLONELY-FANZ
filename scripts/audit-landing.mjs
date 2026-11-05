@@ -30,3 +30,15 @@ assert(!doc.includes("api.tempolabs.ai"), "external Tempo runtime injection rema
 assert(pkg.scripts.build.includes("&&"), "build must fail on TypeScript errors");
 assert(pkg.scripts.typecheck.includes("tsconfig.public.json"), "public typecheck entry missing");
 console.log("CLONELY FANZ static release checks: PASS");
+
+const landingCss = read("src/components/landing/landing-page.css");
+assert(/\.cf-cinema-poster,.cf-cinema-video\{[^}]*object-fit:contain/s.test(css), "hero image and video must preserve entire head on desktop");
+assert(/@media\(max-width:760px\)[\s\S]*?\.cf-cinema-poster,.cf-cinema-video\{[^}]*object-fit:contain/s.test(css), "mobile hero must preserve head");
+assert(/\.clonely-feature-photo\{[^}]*object-fit:contain/s.test(landingCss), "editorial Mila portrait must be uncropped");
+const runtimePackages = Object.keys(pkg.dependencies);
+assert.deepEqual(runtimePackages.sort(), ["react","react-dom","react-router-dom"].sort(), "no unused legacy runtime packages in public app");
+const lock = JSON.parse(read("package-lock.json"));
+assert.equal(Object.keys(lock.packages).length < 150, true, "public dependency closure must stay small");
+assert.equal(lock.packages[""].name, pkg.name, "lockfile and package metadata must match");
+assert(!Object.keys(lock.packages).some(p => /node_modules\/(?:@web3modal|@supabase|valtio|ethers|wagmi)(?:\/|$)/.test(p)), "obsolete vulnerable legacy dependencies in public lockfile");
+console.log("Mila safe crop and dependency closure checks: PASS");
