@@ -21,3 +21,16 @@ jobs:
       - run: npm run build
       - run: npm run lint
       - run: npm run audit:landing
+      - name: Smoke test built public site over HTTP
+        run: |
+          set -euo pipefail
+          npm run preview -- --host 127.0.0.1 --port 4173 --strictPort &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for i in $(seq 1 20); do
+            if curl --fail --silent --show-error http://127.0.0.1:4173/ -o /tmp/clonely-home.html; then break; fi
+            sleep 1
+          done
+          grep -q 'CLONELY FANZ' /tmp/clonely-home.html
+          grep -q 'type="module"' /tmp/clonely-home.html
+          test -n "$(find dist/assets -type f -name '*.js' -print -quit)"
