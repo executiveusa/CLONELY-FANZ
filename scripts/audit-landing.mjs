@@ -1,0 +1,31 @@
+import { readFileSync } from "node:fs";
+import assert from "node:assert/strict";
+
+const read = path => readFileSync(new URL("../" + path, import.meta.url), "utf8");
+const app = read("src/App.tsx");
+const hero = read("src/components/landing/CinematicHero.tsx");
+const landing = read("src/components/landing/LandingPage.tsx");
+const css = read("src/components/landing/cinematic-hero.css");
+const doc = read("index.html");
+const pkg = JSON.parse(read("package.json"));
+
+assert(!app.includes("<SplashCursor"), "cursor animation must be removed from public app");
+assert(app.includes("VITE_ENABLE_PRIVATE_STUDIO_ROUTES"), "private route gate missing");
+assert(app.includes("<OwnerOnly>"), "private route auth gate missing");
+assert(landing.includes("clonely-21-plus-confirmed"), "21+ acknowledgment missing");
+assert(landing.includes("allowedFanvueUrl"), "Fanvue URL validation missing");
+assert(landing.includes('id="disclosure"'), "AI disclosure missing");
+assert(hero.includes("KISS_CUE_SECONDS"), "single video clock cue missing");
+assert(hero.includes("currentTime"), "base/overlay clock synchronization missing");
+assert(hero.includes("onPause"), "pause synchronization missing");
+assert(hero.includes("prefers-reduced-motion"), "reduced-motion check missing");
+assert(hero.includes("sessionStorage"), "one-shot sequence gate missing");
+assert(hero.includes("onError"), "media failure fallback missing");
+assert(hero.includes("CLONELY") && hero.includes("FANZ"), "exact deterministic wordmark missing");
+assert(css.includes("cf-hyperframes-overlay"), "HyperFrames overlay integration missing");
+assert(css.includes("prefers-reduced-motion"), "CSS reduced motion missing");
+assert(doc.includes("CLONELY FANZ"), "site metadata not rebranded");
+assert(!doc.includes("AI Avatar Creator"), "legacy SEO remains");
+assert(!doc.includes("api.tempolabs.ai"), "external Tempo runtime injection remains");
+assert(pkg.scripts.build.includes("&&"), "build must fail on TypeScript errors");
+console.log("CLONELY FANZ static release checks: PASS");
