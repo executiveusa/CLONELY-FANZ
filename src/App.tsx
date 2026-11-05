@@ -23,7 +23,7 @@ function OwnerOnly({ children }: { children: ReactNode }) {
   if (!user) return <div className="min-h-screen grid place-items-center bg-[#100d10] text-[#eee5dc] p-6">Studio access requires an authorized account.</div>;
   return <>{children}</>;
 }
-const showPrivateRoutes = import.meta.env.VITE_ENABLE_PRIVATE_STUDIO_ROUTES === "true";
+const showPrivateRoutes = import.meta.env.DEV && import.meta.env.VITE_ENABLE_PRIVATE_STUDIO_ROUTES === "true";
 function TempoPreviewRoutes() { return useRoutes(routes); }
 
 function App() {
