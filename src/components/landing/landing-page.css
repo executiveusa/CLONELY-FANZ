@@ -88,3 +88,21 @@
 @media(max-width:760px){.clonely-header{height:70px}.clonely-header-action{font-size:10px;padding:11px}.clonely-hero{grid-template-columns:1fr;min-height:auto}.clonely-hero-copy{padding:58px 24px 55px}.clonely-overline{margin-top:54px}.clonely-hero h1{font-size:clamp(66px,12.6vw,95px)}.clonely-hero-stage{min-height:510px;border-left:0}.clonely-stage-m{font-size:410px}.clonely-stage-signature{font-size:120px}.clonely-hero-vertical{display:none}.clonely-marquee{justify-content:space-between;gap:8px;font-size:9px}.clonely-marquee span:last-child,.clonely-marquee i:last-of-type{display:none}.clonely-feature-grid{grid-template-columns:1fr}.clonely-feature-art{height:420px}.clonely-feature-art strong{font-size:100px}.clonely-section-heading{grid-template-columns:1fr}.clonely-disclosure{grid-template-columns:1fr;gap:30px}.clonely-disclosure-mark{width:110px;height:100px;font-size:50px}.clonely-footer{align-items:flex-start;flex-direction:column}}
 @media(max-width:390px){.clonely-header{padding:0 16px}.clonely-wordmark{font-size:21px}.clonely-header-action{padding:11px 9px}.clonely-hero-copy{padding:45px 18px}.clonely-hero h1{font-size:clamp(55px,13vw,65px)}.clonely-hero-stage{min-height:440px}.clonely-stage-m{font-size:310px}.clonely-stage-signature{font-size:92px}.clonely-hero-meta{gap:12px}.clonely-marquee{font-size:8px}.clonely-marquee i{font-size:13px}.clonely-feature-art{height:330px}.clonely-feature-art strong{font-size:80px}.clonely-chapter{grid-template-columns:28px minmax(0,1fr) 20px;gap:12px;padding:24px 0}}
 @media(prefers-reduced-motion:reduce){.clonely-site *,.clonely-site *::before,.clonely-site *::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+
+/* AFTER DARK hero override — scoped to the new immersive experience. */
+.clonely-cinema-shell{width:100%;position:relative;background:#100d10}
+.clonely-header .clonely-wordmark{font:400 clamp(13px,1.25vw,17px)/1 Georgia,serif!important;letter-spacing:0!important}
+.clonely-header .cf-wordmark{display:flex;gap:0;letter-spacing:.11em;align-items:flex-start}
+.clonely-header .cf-wordmark span:first-child{font-size:clamp(13px,1.25vw,17px)!important;color:#eee5dc!important}
+.clonely-header .cf-wordmark span:last-child{font-size:clamp(11px,1.07vw,15px)!important;letter-spacing:.17em!important;margin-left:0!important;color:#eee5dc!important}
+.clonely-footer .cf-wordmark{align-items:flex-start}
+.clonely-footer .cf-wordmark span:first-child{font-size:22px}
+.clonely-footer .cf-wordmark span:last-child{font-size:19px;letter-spacing:.16em;margin-left:0}
+.clonely-marquee{background:#a82e49;color:#fff1ed;font-weight:600}
+.clonely-feature h2,.clonely-collection h2{font-family:"Bodoni Moda",Didot,Georgia,serif}
+.clonely-feature-art strong,.clonely-disclosure h2{font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:400}
+.clonely-button-primary{background:#eee5dc!important;border-color:#eee5dc!important;color:#100d10!important}
+.clonely-button-primary:hover{background:#fff!important}
+.clonely-age-gate h2{font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:400;letter-spacing:-.06em}
+@media(max-width:390px){.clonely-header .cf-wordmark span:first-child{font-size:14px!important}.clonely-header .cf-wordmark span:last-child{font-size:12px!important}}
