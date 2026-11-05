@@ -57,28 +57,21 @@ const chapters = [
 
 export default function LandingPage() {
   const gateRef = useRef<HTMLDivElement>(null);
-  const [ageConfirmed, setAgeConfirmed] = useState(false);
-  const [ageGateReady, setAgeGateReady] = useState(false);
+  // Evaluate the session acknowledgment before first paint to avoid revealing
+  // the page for a frame ahead of the modal.
+  const [ageConfirmed, setAgeConfirmed] = useState(() => {
+    try { return window.sessionStorage.getItem("clonely-21-plus-confirmed") === "yes"; }
+    catch { return false; }
+  });
 
   useEffect(() => {
-    let stored = false;
-    try {
-      stored = window.sessionStorage.getItem("clonely-21-plus-confirmed") === "yes";
-    } catch {
-      // The gate remains visible when session storage is unavailable.
-    }
-    setAgeConfirmed(stored);
-    setAgeGateReady(true);
-  }, []);
-
-  useEffect(() => {
-    if (!ageGateReady || ageConfirmed) return;
+    if (ageConfirmed) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const first = gateRef.current?.querySelector<HTMLElement>("button");
     first?.focus();
     return () => { document.body.style.overflow = previous; };
-  }, [ageGateReady, ageConfirmed]);
+  }, [ageConfirmed]);
 
   const trapGateFocus = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key !== "Tab") return;
@@ -102,12 +95,13 @@ export default function LandingPage() {
       // Acknowledgment applies to this page view if storage is disabled.
     }
     setAgeConfirmed(true);
+    window.requestAnimationFrame(() => document.querySelector<HTMLElement>(".clonely-header-action")?.focus());
   };
 
   return (
     <div className="clonely-site" id="top">
       <a className="clonely-skip" href="#main">Skip to content</a>
-      <header className="clonely-header" inert={ageGateReady && !ageConfirmed} aria-hidden={ageGateReady && !ageConfirmed}>
+      <header className="clonely-header" inert={!ageConfirmed} aria-hidden={!ageConfirmed}>
         <a className="clonely-wordmark" href="#top" aria-label="Clonely Fanz, back to top">
           <ClonelyWordmark className="cf-wordmark--header" />
         </a>
@@ -119,9 +113,9 @@ export default function LandingPage() {
         <a className="clonely-header-action" href="#mila">Explore Mila <span aria-hidden="true">↗</span></a>
       </header>
 
-      <main id="main" inert={ageGateReady && !ageConfirmed} aria-hidden={ageGateReady && !ageConfirmed}>
+      <main id="main" inert={!ageConfirmed} aria-hidden={!ageConfirmed}>
         <section className="clonely-cinema-shell" aria-labelledby="clonely-hero-title">
-          <CinematicHero posterUrl={heroImage} canPlay={ageConfirmed && ageGateReady} />
+          <CinematicHero posterUrl={heroImage} canPlay={ageConfirmed} />
         </section>
 
         <div className="clonely-marquee" aria-label="Original characters, real creative direction, AI disclosed">
@@ -173,13 +167,13 @@ export default function LandingPage() {
           <div><p className="clonely-kicker">BUILT WITH TRANSPARENCY</p><h2 id="clonely-disclosure-title">THE CHARACTER IS FICTIONAL.<br/>THE CREATIVITY ISN'T.</h2><p>Mila is a synthetic adult character. Images, video, and voice may be generated or modified by AI. We do not present these characters as real people, use unlicensed likenesses, or claim that an automated conversation is a live human interaction.</p></div>
         </section>
       </main>
-      <footer className="clonely-footer" inert={ageGateReady && !ageConfirmed} aria-hidden={ageGateReady && !ageConfirmed}>
+      <footer className="clonely-footer" inert={!ageConfirmed} aria-hidden={!ageConfirmed}>
         <ClonelyWordmark className="cf-wordmark--footer" />
         <p>Original virtual personalities. Real creative direction.</p>
         <p>AI-GENERATED / 21+ EXPERIENCE / © {new Date().getFullYear()} CLONELY-FANZ</p>
       </footer>
 
-      {ageGateReady && !ageConfirmed && (
+      {!ageConfirmed && (
         <div className="clonely-gate-backdrop" ref={gateRef} onKeyDown={trapGateFocus}>
           <section className="clonely-age-gate" role="dialog" aria-modal="true" aria-labelledby="clonely-age-gate-title" aria-describedby="clonely-age-gate-description">
             <p className="clonely-kicker">CLONELY-FANZ / ACCESS</p>
