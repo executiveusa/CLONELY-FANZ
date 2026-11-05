@@ -72,14 +72,18 @@ interface CinematicHeroProps {
 export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps) {
   const reducedMotion = useReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const overlayRef = useRef<HTMLVideoElement>(null);
   const playedRef = useRef(false);
   const [kissActive, setKissActive] = useState(false);
   const [mediaFailed, setMediaFailed] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  const [overlayFailed, setOverlayFailed] = useState(false);
   const [replayCount, setReplayCount] = useState(0);
   const [visible, setVisible] = useState(true);
 
   const approvedUrl = allowedVideoUrl(import.meta.env.VITE_MILA_HERO_VIDEO_URL);
+  // Only a reviewer preview can load the separate unapproved transparent WebM.
+  const hyperframesOverlayUrl = previewEnabled ? allowedVideoUrl(import.meta.env.VITE_KISS_OVERLAY_VIDEO_URL) : null;
   const videoUrl = previewEnabled ? approvedUrl ?? DRAFT_VIDEO : approvedUrl;
   const allowPlayback = canPlay && visible && !reducedMotion && !mediaFailed && !!videoUrl;
 
@@ -107,7 +111,7 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
   const onTimeUpdate = useCallback(() => {
     const el = videoRef.current;
     if (!el || playedRef.current) return;
-    if (el.currentTime >= 5.55 && el.currentTime < 7.9) {
+    if (el.currentTime >= 5.45 && el.currentTime < 7.9) {
       playedRef.current = true;
       setKissActive(true);
       try { window.sessionStorage.setItem("clonely-kiss-seen", "yes"); } catch { /* optional */ }
@@ -124,6 +128,7 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
     if (!videoRef.current || reducedMotion || !videoUrl) return;
     playedRef.current = false;
     setKissActive(false);
+    setOverlayFailed(false);
     setReplayCount(count => count + 1);
     videoRef.current.currentTime = 0;
     try { window.sessionStorage.removeItem("clonely-kiss-seen"); } catch { /* optional */ }
@@ -156,7 +161,25 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
       )}
       <div className="cf-film-vignette" aria-hidden="true" />
       {!posterUrl && !videoReady && <div className="cf-cinema-placeholder" aria-hidden="true"><span>M</span></div>}
-      {allowPlayback && kissActive && (
+      {allowPlayback && kissActive && hyperframesOverlayUrl && !overlayFailed && (
+        <video
+          key={"hyperframes-" + replayCount}
+          ref={overlayRef}
+          className="cf-hyperframes-overlay"
+          src={hyperframesOverlayUrl}
+          aria-hidden="true"
+          playsInline
+          muted
+          autoPlay
+          preload="auto"
+          onCanPlay={() => {
+            const player = overlayRef.current;
+            if (player && player.paused) void player.play().catch(() => setOverlayFailed(true));
+          }}
+          onError={() => setOverlayFailed(true)}
+        />
+      )}
+      {allowPlayback && kissActive && (!hyperframesOverlayUrl || overlayFailed) && (
         <div className="cf-impact-sequence" key={replayCount} aria-hidden="true">
           <span className="cf-kiss-flight"><LacquerKiss /></span>
           <span className="cf-impact-glow" />
