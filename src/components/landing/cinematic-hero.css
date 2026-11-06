@@ -1,14 +1,19 @@
 /* A self-contained production-preview motion layer. No additional JS or animation library. */
-.cf-cinema{position:relative;isolation:isolate;min-height:min(880px,calc(100svh - 85px));background:#100d10;overflow:hidden;display:flex;align-items:center;color:#eee5dc}
-.cf-cinema-poster,.cf-cinema-video,.cf-film-vignette,.cf-cinema-placeholder{position:absolute;inset:0;width:100%;height:100%}
-.cf-cinema-poster,.cf-cinema-video{object-fit:cover;object-position:72% 36%}
+.cf-cinema{position:relative;isolation:isolate;min-height:clamp(680px,calc(100svh - 85px),900px);background:radial-gradient(ellipse at 72% 34%,#38212d 0%,#1e131c 37%,#100d10 78%);overflow:hidden;display:flex;align-items:center;color:#eee5dc}
+.cf-film-vignette,.cf-cinema-placeholder{position:absolute;inset:0;width:100%;height:100%}
+/* The source can be portrait or landscape. CONTAIN keeps the full head visible.
+   The media's dark surrounding field is part of the editorial design. */
+.cf-cinema-poster,.cf-cinema-video{
+ position:absolute;inset:0 0 0 auto;width:min(72%,980px);height:100%;
+ object-fit:contain;object-position:center center;
+}
 .cf-cinema-video{z-index:-2;opacity:0;transition:opacity .4s cubic-bezier(.23,1,.32,1)}
 .cf-cinema-video--ready{opacity:1}
 .cf-cinema-poster{z-index:-3}
 .cf-cinema-placeholder{z-index:-4;display:grid;place-items:center;background:radial-gradient(circle at 68% 44%,#5a2731,#171016 54%,#100d10)}
 .cf-cinema-placeholder span{font:italic 400 clamp(200px,34vw,550px)/1 Georgia,serif;color:#e5d4d012}
-.cf-film-vignette{z-index:-1;background:linear-gradient(90deg,#100d10f2 0%,#100d10cc 30%,#100d102f 67%,#100d1005 100%),linear-gradient(0deg,#100d10c9,transparent 42%);pointer-events:none}
-.cf-cinema-content{position:relative;z-index:5;padding:clamp(45px,7vw,112px) clamp(22px,6vw,105px);width:min(760px,65%);pointer-events:none}
+.cf-film-vignette{z-index:-1;background:linear-gradient(90deg,#100d10 0%,#100d10f2 22%,#100d107d 43%,#100d1013 69%,transparent 100%),linear-gradient(0deg,#100d10bd,transparent 28%);pointer-events:none}
+.cf-cinema-content{position:relative;z-index:5;padding:clamp(45px,7vw,112px) clamp(22px,6vw,105px);width:min(760px,60%);pointer-events:none}
 .cf-cinema-content a,.cf-cinema-content button{pointer-events:auto}
 .cf-film-label{color:#d8b1b3;font-size:12px;letter-spacing:.18em;margin:0 0 clamp(26px,5vw,68px);font-weight:500}
 .cf-cinema h1{font-family:"Bodoni Moda",Didot,"Times New Roman",Georgia,serif!important;font-size:clamp(78px,9.8vw,152px)!important;font-weight:400!important;letter-spacing:-.075em!important;line-height:.9!important;margin:0!important;white-space:nowrap}
@@ -33,7 +38,9 @@
 @keyframes cf-fly{0%{opacity:0;transform:translate3d(-25%,-20%,0) scale(.28) rotate(-12deg)}20%{opacity:1}78%{opacity:1}100%{opacity:0;transform:translate3d(-180%,-20%,0) scale(4.7) rotate(0)}}
 @keyframes cf-flash{0%,20%{opacity:0}43%{opacity:.85}100%{opacity:0}}
 @keyframes cf-reveal{0%{opacity:0;transform:scale(.965)}30%,65%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.99)}}
-@media(max-width:760px){.cf-cinema{min-height:690px;align-items:flex-end}.cf-cinema-content{width:100%;padding:55px 24px 55px}.cf-cinema h1{font-size:clamp(68px,12vw,108px)!important}.cf-cinema-poster,.cf-cinema-video{object-position:65% 26%}.cf-film-vignette{background:linear-gradient(0deg,#100d10 0%,#100d10df 21%,#100d105a 53%,#100d102a 100%)}.cf-film-label{margin-bottom:18px}.cf-film-deck{margin:20px 0 23px}.cf-film-edge{display:none}.cf-kiss-flight{left:56%;top:25%}.cf-wordmark span:first-child{font-size:clamp(38px,10vw,72px)}.cf-wordmark span:last-child{font-size:clamp(28px,8vw,54px)}}
+@media(max-width:760px){.cf-cinema{min-height:690px;align-items:flex-end}.cf-cinema-content{width:100%;padding:55px 24px 55px}.cf-cinema h1{font-size:clamp(68px,12vw,108px)!important}.cf-cinema-poster,.cf-cinema-video{inset:0 0 auto;width:100%;height:53%;object-fit:contain;object-position:center top}
+.cf-cinema-content{z-index:5}
+.cf-film-vignette{z-index:-1}.cf-film-vignette{background:linear-gradient(0deg,#100d10 0%,#100d10f5 28%,#100d1088 47%,#100d100a 78%)}.cf-film-label{margin-bottom:18px}.cf-film-deck{margin:20px 0 23px}.cf-film-edge{display:none}.cf-kiss-flight{left:56%;top:25%}.cf-wordmark span:first-child{font-size:clamp(38px,10vw,72px)}.cf-wordmark span:last-child{font-size:clamp(28px,8vw,54px)}}
 @media(max-width:390px){.cf-cinema{min-height:620px}.cf-cinema-content{padding:36px 18px}.cf-film-actions{gap:14px}.cf-cinema h1{font-size:65px!important}.cf-film-deck{font-size:22px}.cf-film-disclosure{margin-top:25px}}
 @media(prefers-reduced-motion:reduce){.cf-impact-sequence{display:none!important}.cf-cinema-video{display:none!important}.cf-film-button,.cf-replay{transition:none!important}}
 
@@ -50,3 +57,21 @@
 @media(hover:hover) and (pointer:fine){.cf-film-button:hover{background:#fff}.cf-film-text-link:hover{color:#fff!important}.cf-replay:hover{color:#fff}}
 @media(max-width:760px){.cf-cinema-content{padding-bottom:calc(55px + env(safe-area-inset-bottom,0px))}}
 @media(prefers-reduced-motion:reduce){.cf-kiss-flight,.cf-impact-wordmark,.cf-impact-glow{will-change:auto}}
+
+/* Finished editorial treatment: portrait-safe on wide screens, full face on phones. */
+.cf-cinema::after{content:"";position:absolute;z-index:1;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px #eee5dc0a}
+.cf-cinema-poster{filter:saturate(.92);opacity:.96}
+@media(min-width:761px) and (max-width:1080px){
+ .cf-cinema-content{width:65%;padding-inline:clamp(24px,4vw,52px)}
+ .cf-cinema-poster,.cf-cinema-video{width:68%}
+}
+@media(max-width:760px){
+ .cf-cinema{min-height:790px;align-items:flex-end}
+ .cf-cinema-poster,.cf-cinema-video{height:52%;width:100%;object-position:center top}
+ .cf-cinema-content{width:100%;padding-top:0;isolation:isolate}
+ .cf-film-vignette{background:linear-gradient(0deg,#100d10 0%,#100d10 32%,#100d10e0 44%,#100d1050 65%,#100d1008 92%)}
+}
+@media(max-width:390px){
+ .cf-cinema{min-height:740px}
+ .cf-cinema-poster,.cf-cinema-video{height:49%}
+}
