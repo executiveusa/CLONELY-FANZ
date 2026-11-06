@@ -40,7 +40,7 @@ Each virtual creator would have a persistent, permissioned **character operator 
 
 ## Project status and release controls
 - Site PR #39 already merged to main; current security/crop PR #44 is separate and remains draft at time of decision.
-- This branch only adds strategic documentation; it must not alter business baseline site code, enable adult promotion, connect accounts or deploy.
+- This branch adds strategy documents, a **non-public, disabled-by-default** research-tool manifest, an eligibility registry, read-only aggregate baseline importer, and test gates. It does not alter the public site, connect accounts, enable adult promotion or deploy.
 - Owner approval and independent security/legal review required before turning on live autonomously acting agents.
 - Rollback: disable creator agent's tool policy and schedules; revoke scoped tokens; preserve logs; return to human-reviewed content workflow.
 
@@ -59,3 +59,6 @@ Each virtual creator would have a persistent, permissioned **character operator 
 - [Platform roadmap #15](https://github.com/executiveusa/CLONELY-FANZ/issues/15) documents a **superseded open persona-builder direction**, not current locked positioning; do not execute it without a new owner decision.
 - [Mila release checklist #41](https://github.com/executiveusa/CLONELY-FANZ/issues/41) remains active.
 - [Safe-hero/dependency draft PR #44](https://github.com/executiveusa/CLONELY-FANZ/pull/44) remains separate.
+
+## Platform leverage extension (authorized research only)
+The operating model extends through [Mila's platform-and-niche eligibility registry](../../ops/mila/README.md), source-backed JSON classifications, [Agent-Reach gated toolkit](../../agents/mila/toolkit/agent-reach.json), and a local-only Fanvue aggregate baseline process. **None of these constitutes account permission or actual operating revenue.**
