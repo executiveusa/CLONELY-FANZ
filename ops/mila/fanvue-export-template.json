@@ -1,0 +1,20 @@
+{
+  "creator_id": "MILA-CC-001",
+  "source": "owner-approved-fanvue-aggregate-export",
+  "period_start": "YYYY-MM-DD",
+  "period_end": "YYYY-MM-DD",
+  "metrics": {
+    "followers": null,
+    "subscribers": null,
+    "gross_earnings": null,
+    "platform_fees": null,
+    "refunds": null,
+    "net_payout": null,
+    "posts_published": null,
+    "purchases": null,
+    "tracked_visits": null,
+    "human_minutes": null,
+    "content_cost": null,
+    "agent_cost": null
+  }
+}
