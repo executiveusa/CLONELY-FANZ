@@ -176,7 +176,7 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
   }, [canRenderVideo, resetVisuals]);
 
   return (
-    <div className="cf-cinema" aria-label="Mila cinematic hero presentation">
+    <div className={"cf-cinema" + (canPlay ? " cf-cinema--entered" : "")} aria-label="Mila cinematic hero presentation">
       {posterUrl && (
         <img className="cf-cinema-poster" src={posterUrl} alt="Mila, a fictional adult AI character" fetchPriority="high" />
       )}
@@ -223,7 +223,7 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
         </div>
       )}
 
-      <div className="cf-cinema-content">
+      <div className="cf-cinema-content" aria-live="off">
         <p className="cf-film-label">MILA · CC—001</p>
         <h1 id="clonely-hero-title">Meet <em>Mila.</em></h1>
         <p className="cf-film-deck">An original AI muse.<br />A world of her own.</p>
