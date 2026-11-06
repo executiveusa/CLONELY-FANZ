@@ -42,3 +42,10 @@ assert.equal(Object.keys(lock.packages).length < 150, true, "public dependency c
 assert.equal(lock.packages[""].name, pkg.name, "lockfile and package metadata must match");
 assert(!Object.keys(lock.packages).some(p => /node_modules\/(?:@web3modal|@supabase|valtio|ethers|wagmi)(?:\/|$)/.test(p)), "obsolete vulnerable legacy dependencies in public lockfile");
 console.log("Mila safe crop and dependency closure checks: PASS");
+
+assert(hero.includes("cf-cinema--entered"),"age-gated entrance state missing");
+assert(css.includes("cf-editorial-entrance") && css.includes("cf-portrait-entrance"),"hero entrance choreography missing");
+assert(css.includes(".cf-cinema-video{z-index:2") && css.includes(".cf-cinema-poster{z-index:1") && css.includes(".cf-film-vignette{z-index:3"),"hero media/overlay stack must render above background");
+assert(/@media\(prefers-reduced-motion:reduce\)[\s\S]*cf-cinema--entered[\s\S]*animation:none!important/.test(css),"hero entrance needs reduced motion fallback");
+assert(css.includes("object-fit:contain"),"portrait-safe frame must be preserved");
+console.log("Mila hero entrance, stacking and reduced-motion checks: PASS");
