@@ -1,0 +1,23 @@
+name: Verify Mila opportunity and tool policy
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'ops/mila/**'
+      - 'agents/mila/**'
+      - 'scripts/mila-*.mjs'
+      - 'scripts/verify-mila-ops.mjs'
+      - '.github/workflows/verify-mila-ops.yml'
+      - '.gitignore'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/verify-mila-ops.mjs

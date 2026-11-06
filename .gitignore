@@ -35,3 +35,7 @@ core
 .env.*
 !.env.example
 !.env.*.example
+
+# Mila private authorized analytics exports and local-only agent settings
+.private/
+ops/mila/private/

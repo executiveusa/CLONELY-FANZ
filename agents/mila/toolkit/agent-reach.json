@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "name": "agent-reach",
+  "upstream": "https://github.com/Panniantong/Agent-Reach",
+  "license": "MIT",
+  "upstream_version_observed": "1.6.1",
+  "type": "external-optional-research-cli",
+  "decision": "ADOPT_AS_REVIEWED_OPTION_NOT_AUTO_INSTALLED",
+  "enabled": false,
+  "execution_environment": "isolated-worker-only",
+  "allowed_capabilities": [
+    "web.read_public_official_policy",
+    "web.read_public_help",
+    "youtube.read_public_metadata_with_appropriate_access",
+    "github.read_public"
+  ],
+  "disabled_capabilities": [
+    "reddit",
+    "twitter",
+    "instagram",
+    "facebook",
+    "xiaohongshu",
+    "linkedin_authenticated",
+    "cookie_migration",
+    "automatic_browser_login",
+    "posting",
+    "dm",
+    "account_changes",
+    "captcha_bypass",
+    "proxy_rotation"
+  ],
+  "tool_permissions": {
+    "read_only": true,
+    "no_browser_cookies": true,
+    "no_production_secrets": true,
+    "no_spend": true,
+    "no_write_actions": true,
+    "allow_untrusted_html_as_data_only": true,
+    "domain_allowlist": [
+      "help.fanvue.com",
+      "legal.fanvue.com",
+      "support.reddithelp.com",
+      "help.x.com",
+      "support.google.com",
+      "support.patreon.com",
+      "help.fansly.com"
+    ],
+    "max_calls_per_run": 10,
+    "max_output_chars": 12000,
+    "requires_owner_enable": true
+  },
+  "security_review_required": true,
+  "installation": "Manual review and pinned upstream revision in isolated worker; never curl|sh or 'install all' on server",
+  "usage": "node scripts/mila-agent-reach.mjs doctor | read <approved official HTTPS URL>",
+  "status": "REGISTERED_NOT_INSTALLED_NOT_CONNECTED"
+}

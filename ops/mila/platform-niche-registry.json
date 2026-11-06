@@ -1,0 +1,471 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-11-05",
+  "studio": "CLONELY-FANZ",
+  "creator_id": "MILA-CC-001",
+  "business_model": "private-agentic-creator-studio",
+  "status": "research_registry_no_connected_accounts",
+  "classification_values": [
+    "direct_revenue",
+    "audience_acquisition",
+    "eligible_secondary_commerce",
+    "blocked"
+  ],
+  "eligibility_values": [
+    "conditional",
+    "blocked"
+  ],
+  "no_live_activity_claims": true,
+  "policy_review_required": true,
+  "source_urls": {
+    "fanvue": "https://help.fanvue.com/en/articles/9538738-ai-content-on-fanvue-what-s-allowed",
+    "fanvueApi": "https://legal.fanvue.com/api-policy",
+    "x": "https://help.x.com/en/rules-and-policies/adult-content",
+    "reddit": "https://support.reddithelp.com/hc/en-us/articles/42728983564564-Responsible-Builder-Policy",
+    "fansly": "https://help.fansly.com/en/articles/12315578-ai-generated-content-on-fansly",
+    "patreon": "https://support.patreon.com/hc/en-us/articles/34055590411789-Understanding-Patreon-s-AI-policies-for-Adult-18-creators",
+    "patreonGuidelines": "https://www.patreon.com/policy/guidelines",
+    "youtube": "https://support.google.com/youtube/answer/2802002",
+    "youtubeAI": "https://support.google.com/youtube/answer/14328491",
+    "tiktok": "https://support.tiktok.com/en/using-tiktok/creating-videos/ai-generated-content"
+  },
+  "niches": [
+    {
+      "id": "glamour",
+      "label": "Glamour / boudoir",
+      "risk": "adult",
+      "notes": "Adult fictional model imagery; review platform-specific exposure limits"
+    },
+    {
+      "id": "romantic-fiction",
+      "label": "Romantic storytelling and audio",
+      "risk": "adult",
+      "notes": "AI-disclosed fictional romance, no misleading claims of real human relationship"
+    },
+    {
+      "id": "cosplay",
+      "label": "Cosplay / alternative fashion",
+      "risk": "sfw",
+      "notes": "Original character designs only; avoid unlicensed trademarks and real-person likeness"
+    },
+    {
+      "id": "illustrated-fantasy",
+      "label": "Illustrated adult fantasy comics",
+      "risk": "adult",
+      "notes": "Non-photorealistic adult fictional work; policy screening per platform"
+    },
+    {
+      "id": "mature-lifestyle",
+      "label": "Mature fashion and lifestyle",
+      "risk": "sfw",
+      "notes": "Non-explicit editorial persona content with clear AI disclosure"
+    },
+    {
+      "id": "power-dynamics-fiction",
+      "label": "Consensual power-dynamic fiction",
+      "risk": "high",
+      "notes": "No manipulation, threats, non-consensual conduct, or coercive financial requests"
+    },
+    {
+      "id": "voice-drama",
+      "label": "Voice drama / serialized audio",
+      "risk": "adult",
+      "notes": "Original scripts, licensed speech and voices, disclose synthesis"
+    },
+    {
+      "id": "creator-b2b",
+      "label": "Managed services for consenting adult creators",
+      "risk": "business",
+      "notes": "Contracted production operations, identity/rights verification and compliance"
+    }
+  ],
+  "platforms": [
+    {
+      "id": "fanvue",
+      "name": "Fanvue",
+      "status": "conditional",
+      "direct_revenue": true,
+      "discovery": false,
+      "requirements": [
+        "Verified human operator KYC",
+        "AI label, clearly adult fictional character",
+        "Authorized own account / OAuth",
+        "Content-policy review"
+      ],
+      "source_urls": [
+        "https://help.fanvue.com/en/articles/9538738-ai-content-on-fanvue-what-s-allowed",
+        "https://legal.fanvue.com/api-policy"
+      ]
+    },
+    {
+      "id": "x",
+      "name": "X",
+      "status": "conditional",
+      "direct_revenue": false,
+      "discovery": true,
+      "requirements": [
+        "Comply with labeled adult content restrictions",
+        "Check current account and API automation permissions",
+        "No unsolicited outreach or mass engagement"
+      ],
+      "source_urls": [
+        "https://help.x.com/en/rules-and-policies/adult-content"
+      ]
+    },
+    {
+      "id": "instagram",
+      "name": "Instagram",
+      "status": "conditional",
+      "direct_revenue": false,
+      "discovery": true,
+      "requirements": [
+        "Non-explicit SFW-only content",
+        "Authorized creator/professional account and approved API",
+        "Recheck current links and promotion policy"
+      ],
+      "source_urls": [
+        "https://transparency.meta.com/policies/community-standards/adult-nudity-sexual-activity/"
+      ]
+    },
+    {
+      "id": "tiktok",
+      "name": "TikTok",
+      "status": "conditional",
+      "direct_revenue": false,
+      "discovery": true,
+      "requirements": [
+        "SFW-only, not erotic promotion",
+        "AI generated/altered content disclosure",
+        "Approved publishing eligibility"
+      ],
+      "source_urls": [
+        "https://support.tiktok.com/en/using-tiktok/creating-videos/ai-generated-content"
+      ]
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "status": "conditional",
+      "direct_revenue": false,
+      "discovery": true,
+      "requirements": [
+        "SFW storytelling, no sexual-gratification content",
+        "AI disclosure for realistic synthetic scenes",
+        "No assumption of ad eligibility"
+      ],
+      "source_urls": [
+        "https://support.google.com/youtube/answer/2802002",
+        "https://support.google.com/youtube/answer/14328491"
+      ]
+    },
+    {
+      "id": "patreon",
+      "name": "Patreon",
+      "status": "conditional",
+      "direct_revenue": true,
+      "discovery": false,
+      "requirements": [
+        "Illustrated/non-photorealistic adult fiction only where permitted",
+        "No synthetic hyperrealistic adult character subscriptions",
+        "No adult AI chatbot/generator offering"
+      ],
+      "source_urls": [
+        "https://support.patreon.com/hc/en-us/articles/34055590411789-Understanding-Patreon-s-AI-policies-for-Adult-18-creators",
+        "https://www.patreon.com/policy/guidelines"
+      ]
+    },
+    {
+      "id": "fansly",
+      "name": "Fansly",
+      "status": "blocked",
+      "direct_revenue": false,
+      "discovery": false,
+      "requirements": [
+        "No Mila photorealistic AI creator content",
+        "Separate illustrated character could require new verified approval"
+      ],
+      "source_urls": [
+        "https://help.fansly.com/en/articles/12315578-ai-generated-content-on-fansly"
+      ]
+    },
+    {
+      "id": "reddit",
+      "name": "Reddit",
+      "status": "blocked",
+      "direct_revenue": false,
+      "discovery": false,
+      "requirements": [
+        "No commercial API/data harvesting absent explicit approval",
+        "No Agent-Reach cookie scraping or unsolicited DMs",
+        "Use only separately approved program compliant with rules"
+      ],
+      "source_urls": [
+        "https://support.reddithelp.com/hc/en-us/articles/42728983564564-Responsible-Builder-Policy"
+      ]
+    },
+    {
+      "id": "owned-site",
+      "name": "Owner-controlled studio site",
+      "status": "conditional",
+      "direct_revenue": false,
+      "discovery": true,
+      "requirements": [
+        "No adult checkout until processor/legal approvals",
+        "21+ self-attestation not treated as legal assurance",
+        "No fake client testimonials"
+      ],
+      "source_urls": []
+    },
+    {
+      "id": "licensed-b2b",
+      "name": "Direct licensed B2B contracts",
+      "status": "conditional",
+      "direct_revenue": true,
+      "discovery": false,
+      "requirements": [
+        "Signed contracts and character IP rights",
+        "Approved payments for lawful services",
+        "Explicit client consent and data boundaries"
+      ],
+      "source_urls": []
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "fanvue-glamour-sub",
+      "platform_id": "fanvue",
+      "niche_id": "glamour",
+      "category": "direct_revenue",
+      "eligibility": "conditional",
+      "activity": "AI-disclosed subscription collections",
+      "gate": "Fanvue verified owner and approved fully fictional adult account",
+      "source_urls": [
+        "https://help.fanvue.com/en/articles/9538738-ai-content-on-fanvue-what-s-allowed"
+      ]
+    },
+    {
+      "id": "fanvue-glamour-ppv",
+      "platform_id": "fanvue",
+      "niche_id": "glamour",
+      "category": "direct_revenue",
+      "eligibility": "conditional",
+      "activity": "Approved PPV editorial releases",
+      "gate": "Verify account and applicable current content rules",
+      "source_urls": [
+        "https://help.fanvue.com/en/articles/9538738-ai-content-on-fanvue-what-s-allowed"
+      ]
+    },
+    {
+      "id": "fanvue-romance-audio",
+      "platform_id": "fanvue",
+      "niche_id": "romantic-fiction",
+      "category": "direct_revenue",
+      "eligibility": "conditional",
+      "activity": "Original fiction and voice releases",
+      "gate": "Verify AI voice disclosure and account eligibility",
+      "source_urls": [
+        "https://help.fanvue.com/en/articles/9538738-ai-content-on-fanvue-what-s-allowed"
+      ]
+    },
+    {
+      "id": "fanvue-inbound-message",
+      "platform_id": "fanvue",
+      "niche_id": "romantic-fiction",
+      "category": "direct_revenue",
+      "eligibility": "conditional",
+      "activity": "Platform-approved paid inbound AI-assistance",
+      "gate": "Require authorized scopes, clear bot disclosure, opt-in and pause",
+      "source_urls": [
+        "https://legal.fanvue.com/api-policy"
+      ]
+    },
+    {
+      "id": "fanvue-cosplay",
+      "platform_id": "fanvue",
+      "niche_id": "cosplay",
+      "category": "direct_revenue",
+      "eligibility": "conditional",
+      "activity": "Original costume editorial release",
+      "gate": "No unlicensed likeness/trademarks",
+      "source_urls": [
+        "https://help.fanvue.com/en/articles/9538738-ai-content-on-fanvue-what-s-allowed"
+      ]
+    },
+    {
+      "id": "fanvue-power-fiction",
+      "platform_id": "fanvue",
+      "niche_id": "power-dynamics-fiction",
+      "category": "direct_revenue",
+      "eligibility": "conditional",
+      "activity": "Consensual scripted adult fiction",
+      "gate": "Additional content policy approval; no financial coercion",
+      "source_urls": [
+        "https://help.fanvue.com/en/articles/9538738-ai-content-on-fanvue-what-s-allowed"
+      ]
+    },
+    {
+      "id": "x-discover-glamour",
+      "platform_id": "x",
+      "niche_id": "glamour",
+      "category": "audience_acquisition",
+      "eligibility": "conditional",
+      "activity": "Properly labeled creator announcements",
+      "gate": "No unsolicited messaging, obey account/API and content placement rules",
+      "source_urls": [
+        "https://help.x.com/en/rules-and-policies/adult-content"
+      ]
+    },
+    {
+      "id": "x-discover-cosplay",
+      "platform_id": "x",
+      "niche_id": "cosplay",
+      "category": "audience_acquisition",
+      "eligibility": "conditional",
+      "activity": "Original cosplay public social previews",
+      "gate": "Check AI labels, auth and publication policy",
+      "source_urls": [
+        "https://help.x.com/en/rules-and-policies/adult-content"
+      ]
+    },
+    {
+      "id": "instagram-sfw-fashion",
+      "platform_id": "instagram",
+      "niche_id": "mature-lifestyle",
+      "category": "audience_acquisition",
+      "eligibility": "conditional",
+      "activity": "Non-explicit fashion/editorial stories",
+      "gate": "Eligible non-sexualized content; verify official account permissions",
+      "source_urls": [
+        "https://transparency.meta.com/policies/community-standards/adult-nudity-sexual-activity/"
+      ]
+    },
+    {
+      "id": "tiktok-sfw-cosplay",
+      "platform_id": "tiktok",
+      "niche_id": "cosplay",
+      "category": "audience_acquisition",
+      "eligibility": "conditional",
+      "activity": "Original non-explicit character short films",
+      "gate": "AI label and review; no sexual content or adult promotion",
+      "source_urls": [
+        "https://support.tiktok.com/en/using-tiktok/creating-videos/ai-generated-content"
+      ]
+    },
+    {
+      "id": "youtube-sfw-story",
+      "platform_id": "youtube",
+      "niche_id": "voice-drama",
+      "category": "audience_acquisition",
+      "eligibility": "conditional",
+      "activity": "Non-explicit serial story episodes",
+      "gate": "No erotic sound/visual material; synthetic media disclosure",
+      "source_urls": [
+        "https://support.google.com/youtube/answer/2802002",
+        "https://support.google.com/youtube/answer/14328491"
+      ]
+    },
+    {
+      "id": "patreon-illustrated-comics",
+      "platform_id": "patreon",
+      "niche_id": "illustrated-fantasy",
+      "category": "eligible_secondary_commerce",
+      "eligibility": "conditional",
+      "activity": "Original illustrated adult comic issues",
+      "gate": "Illustrated format only; approval and adult-category compliance",
+      "source_urls": [
+        "https://support.patreon.com/hc/en-us/articles/34055590411789-Understanding-Patreon-s-AI-policies-for-Adult-18-creators",
+        "https://www.patreon.com/policy/guidelines"
+      ]
+    },
+    {
+      "id": "licensed-creator-production",
+      "platform_id": "licensed-b2b",
+      "niche_id": "creator-b2b",
+      "category": "eligible_secondary_commerce",
+      "eligibility": "conditional",
+      "activity": "Private studio identity/production sprint",
+      "gate": "Signed contract, verified age/rights and suitable lawful payment terms",
+      "source_urls": []
+    },
+    {
+      "id": "licensed-voice-ip",
+      "platform_id": "licensed-b2b",
+      "niche_id": "voice-drama",
+      "category": "eligible_secondary_commerce",
+      "eligibility": "conditional",
+      "activity": "Original synthetic character voice licensing",
+      "gate": "Licensed voice rights and signed usage terms",
+      "source_urls": []
+    },
+    {
+      "id": "owned-sfw-portfolio",
+      "platform_id": "owned-site",
+      "niche_id": "mature-lifestyle",
+      "category": "audience_acquisition",
+      "eligibility": "conditional",
+      "activity": "SFW portfolio and studio qualified inquiries",
+      "gate": "No unapproved live Fanvue outbound CTA and no illegal age gate claims",
+      "source_urls": []
+    },
+    {
+      "id": "fansly-photo-ai",
+      "platform_id": "fansly",
+      "niche_id": "glamour",
+      "category": "blocked",
+      "eligibility": "blocked",
+      "activity": "Photorealistic Mila content on Fansly",
+      "gate": "Platform prohibits substantially photorealistic AI-generated people",
+      "source_urls": [
+        "https://help.fansly.com/en/articles/12315578-ai-generated-content-on-fansly"
+      ]
+    },
+    {
+      "id": "patreon-realistic-ai",
+      "platform_id": "patreon",
+      "niche_id": "glamour",
+      "category": "blocked",
+      "eligibility": "blocked",
+      "activity": "Photorealistic synthetic adult Mila Patreon offering",
+      "gate": "Adult AI photorealistic depictions only with real verified consenting subjects",
+      "source_urls": [
+        "https://support.patreon.com/hc/en-us/articles/34055590411789-Understanding-Patreon-s-AI-policies-for-Adult-18-creators"
+      ]
+    },
+    {
+      "id": "reddit-cookie-harvest",
+      "platform_id": "reddit",
+      "niche_id": "glamour",
+      "category": "blocked",
+      "eligibility": "blocked",
+      "activity": "Agent-Reach Reddit cookie search for commercial leads",
+      "gate": "Written API approval required; no unauthorized scraping or unsolicited bot messages",
+      "source_urls": [
+        "https://support.reddithelp.com/hc/en-us/articles/42728983564564-Responsible-Builder-Policy"
+      ]
+    },
+    {
+      "id": "youtube-explicit",
+      "platform_id": "youtube",
+      "niche_id": "power-dynamics-fiction",
+      "category": "blocked",
+      "eligibility": "blocked",
+      "activity": "Sexually gratifying or explicit videos",
+      "gate": "YouTube excludes explicit sexual and fetish-focused material",
+      "source_urls": [
+        "https://support.google.com/youtube/answer/2802002"
+      ]
+    },
+    {
+      "id": "fanvue-fake-engagement",
+      "platform_id": "fanvue",
+      "niche_id": "glamour",
+      "category": "blocked",
+      "eligibility": "blocked",
+      "activity": "Automated fake engagement, stolen content, or account credential capture",
+      "gate": "Prohibited by Fanvue API policy",
+      "source_urls": [
+        "https://legal.fanvue.com/api-policy"
+      ]
+    }
+  ]
+}
