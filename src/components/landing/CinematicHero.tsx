@@ -4,9 +4,11 @@ import "./cinematic-hero.css";
 const DRAFT_VIDEO = "https://d8j0ntlcm91z4.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/hf_20261105_053425_aec257c7-b66c-45d0-8aaa-aad101695819.mp4";
 const previewEnabled = import.meta.env.VITE_MILA_HERO_PREVIEW === "true";
 // An explicit preview-only URL switch: never surfaces unapproved baked media in production.
+// V5: lips remain visible 1.07s after flight, morph into the fixed centered stacked wordmark;
+// baked composite is self-contained, so never overlay a second kiss effect.
 const bakedReviewCutEnabled = previewEnabled && typeof window !== "undefined" &&
   new URLSearchParams(window.location.search).get("milaFilm") === "v4";
-const BAKED_REVIEW_VIDEO = "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/04e6c525-3488-4e99-855e-6ce08e39c5bc.mp4";
+const BAKED_REVIEW_VIDEO = "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/d9ffc42a-31bc-49f5-b7ad-0f1670cf2a28.mp4";
 /** Calibrate after reviewing the actual Mila frame at the end of her kiss. */
 const configuredCue = Number(import.meta.env.VITE_MILA_KISS_CUE_SECONDS);
 export const KISS_CUE_SECONDS = Number.isFinite(configuredCue) && configuredCue >= 0 && configuredCue <= 7
