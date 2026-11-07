@@ -3,6 +3,18 @@ import "./cinematic-hero.css";
 
 const DRAFT_VIDEO = "https://d8j0ntlcm91z4.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/hf_20261105_053425_aec257c7-b66c-45d0-8aaa-aad101695819.mp4";
 const previewEnabled = import.meta.env.VITE_MILA_HERO_PREVIEW === "true";
+// An explicit preview-only URL switch: never surfaces unapproved baked media in production.
+// V5: lips remain visible 1.07s after flight, morph into the fixed centered stacked wordmark;
+// baked composite is self-contained, so never overlay a second kiss effect.
+const previewFilmVersion = previewEnabled && typeof window !== "undefined"
+  ? new URLSearchParams(window.location.search).get("milaFilm") : null;
+const bakedReviewCutEnabled = previewFilmVersion === "v4" || previewFilmVersion === "v6" || previewFilmVersion === "v7";
+const speakingReviewEnabled = previewFilmVersion === "v6" || previewFilmVersion === "v7";
+const workflowReviewEnabled = previewFilmVersion === "v7";
+const BAKED_REVIEW_VIDEO = "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/d9ffc42a-31bc-49f5-b7ad-0f1670cf2a28.mp4";
+const SPEAKING_REVIEW_VIDEO = "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/4d585f27-851d-499c-b7b8-c9cad6ea72cd.mp4";
+// Fully rendered V7 contains V5 kiss, owner-locked V6 narration, and a labeled simulated workflow.
+const WORKFLOW_REVIEW_VIDEO = "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/d86c710f-3f1b-4d3d-9f20-620575412f1d.mp4";
 /** Calibrate after reviewing the actual Mila frame at the end of her kiss. */
 const configuredCue = Number(import.meta.env.VITE_MILA_KISS_CUE_SECONDS);
 export const KISS_CUE_SECONDS = Number.isFinite(configuredCue) && configuredCue >= 0 && configuredCue <= 7
@@ -78,13 +90,16 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
   const [overlayFailed, setOverlayFailed] = useState(false);
   const [autoplayBlocked, setAutoplayBlocked] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [soundEnabled, setSoundEnabled] = useState(false);
+  const [previewCaption, setPreviewCaption] = useState("");
 
   const configuredVideo = allowedMediaUrl(import.meta.env.VITE_MILA_HERO_VIDEO_URL);
-  const videoUrl = configuredVideo ?? (previewEnabled ? DRAFT_VIDEO : null);
-  const overlayUrl = previewEnabled ? allowedMediaUrl(import.meta.env.VITE_KISS_OVERLAY_VIDEO_URL) : null;
+  const videoUrl = workflowReviewEnabled ? WORKFLOW_REVIEW_VIDEO : speakingReviewEnabled ? SPEAKING_REVIEW_VIDEO : bakedReviewCutEnabled ? BAKED_REVIEW_VIDEO : configuredVideo ?? (previewEnabled ? DRAFT_VIDEO : null);
+  // Review MP4 already includes kiss and wordmark; never render a second overlay.
+  const overlayUrl = previewEnabled && !bakedReviewCutEnabled ? allowedMediaUrl(import.meta.env.VITE_KISS_OVERLAY_VIDEO_URL) : null;
   const canRenderVideo = canPlay && !reducedMotion && !videoFailed && !!videoUrl;
   const canPlayNow = canRenderVideo && visible;
-  const showCssFallback = !overlayUrl || overlayFailed;
+  const showCssFallback = !bakedReviewCutEnabled && (!overlayUrl || overlayFailed);
 
   useEffect(() => {
     try {
@@ -130,6 +145,11 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
   const onTimeUpdate = useCallback(() => {
     const base = videoRef.current;
     if (!base) return;
+    if (speakingReviewEnabled) {
+      const t = base.currentTime;
+      setPreviewCaption(t < 12.55 ? "" : t < 14.55 ? "Welcome to Clonely Fanz." : t < 16.4 ? "I’m Mila, your host." : t < 19.3 ? "Let me show you what makes us different." : "");
+    }
+    if (bakedReviewCutEnabled) return;
     const time = base.currentTime;
     // Handles video loop wraps as well as user seeking backwards.
     if (time < lastClockRef.current - 0.5) resetVisuals();
@@ -170,6 +190,7 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
     setOverlayFailed(false);
     resetVisuals();
     setAutoplayBlocked(false);
+    setPreviewCaption("");
     try { window.sessionStorage.removeItem("clonely-kiss-seen"); } catch { /* optional */ }
     base.currentTime = 0;
     void base.play().catch(() => setAutoplayBlocked(true));
@@ -184,7 +205,7 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
         <video
           ref={videoRef}
           className={"cf-cinema-video" + (videoReady ? " cf-cinema-video--ready" : "")}
-          muted loop playsInline autoPlay preload="metadata" poster={posterUrl || undefined}
+          muted={!soundEnabled} loop={!bakedReviewCutEnabled} playsInline autoPlay preload="metadata" poster={posterUrl || undefined}
           aria-hidden="true" tabIndex={-1}
           onLoadedData={() => setVideoReady(true)}
           onError={() => setVideoFailed(true)}
@@ -223,6 +244,7 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
         </div>
       )}
 
+      {speakingReviewEnabled && previewCaption && <p className="cf-mila-caption" aria-live="off">{previewCaption}</p>}
       <div className="cf-cinema-content" aria-live="off">
         <p className="cf-film-label">MILA · CC—001</p>
         <h1 id="clonely-hero-title">Meet <em>Mila.</em></h1>
@@ -232,6 +254,11 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
           <a href="#disclosure" className="cf-film-text-link">A fictional AI creator</a>
         </div>
         <p className="cf-film-disclosure">Original synthetic character · Adults 21+</p>
+        {canRenderVideo && speakingReviewEnabled && (
+          <button className="cf-replay cf-sound" type="button" onClick={() => setSoundEnabled(value => !value)} aria-label={soundEnabled ? "Mute Mila narration" : "Enable Mila narration"}>
+            {soundEnabled ? "Mute Mila" : "Hear Mila"} <span aria-hidden="true">{soundEnabled ? "◌" : "♪"}</span>
+          </button>
+        )}
         {canRenderVideo && (
           <button className="cf-replay" type="button" onClick={replay} aria-label="Replay Mila's cinematic introduction">
             {autoplayBlocked ? "Play the introduction" : "Replay the kiss"} <span aria-hidden="true">↺</span>
