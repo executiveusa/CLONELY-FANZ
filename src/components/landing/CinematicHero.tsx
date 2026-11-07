@@ -8,13 +8,16 @@ const previewEnabled = import.meta.env.VITE_MILA_HERO_PREVIEW === "true";
 // baked composite is self-contained, so never overlay a second kiss effect.
 const previewFilmVersion = previewEnabled && typeof window !== "undefined"
   ? new URLSearchParams(window.location.search).get("milaFilm") : null;
-const bakedReviewCutEnabled = previewFilmVersion === "v4" || previewFilmVersion === "v6" || previewFilmVersion === "v7";
-const speakingReviewEnabled = previewFilmVersion === "v6" || previewFilmVersion === "v7";
+const bakedReviewCutEnabled = previewFilmVersion === "v4" || previewFilmVersion === "v6" || previewFilmVersion === "v7" || previewFilmVersion === "v8";
+const speakingReviewEnabled = previewFilmVersion === "v6" || previewFilmVersion === "v7" || previewFilmVersion === "v8";
+const v8ProofCutEnabled = previewFilmVersion === "v8";
 const workflowReviewEnabled = previewFilmVersion === "v7";
 const BAKED_REVIEW_VIDEO = "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/d9ffc42a-31bc-49f5-b7ad-0f1670cf2a28.mp4";
 const SPEAKING_REVIEW_VIDEO = "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/4d585f27-851d-499c-b7b8-c9cad6ea72cd.mp4";
 // Fully rendered V7 contains V5 kiss, owner-locked V6 narration, and a labeled simulated workflow.
 const WORKFLOW_REVIEW_VIDEO = "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/d86c710f-3f1b-4d3d-9f20-620575412f1d.mp4";
+// V8 uses a real scripted browser recording in an explicitly labeled sandbox; it does not imply connected Fanvue or autonomous agent runtime.
+const V8_PROOF_CUT_VIDEO = "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/1baca9b0-a28e-4589-8b40-1a121988417a.mp4";
 /** Calibrate after reviewing the actual Mila frame at the end of her kiss. */
 const configuredCue = Number(import.meta.env.VITE_MILA_KISS_CUE_SECONDS);
 export const KISS_CUE_SECONDS = Number.isFinite(configuredCue) && configuredCue >= 0 && configuredCue <= 7
@@ -94,7 +97,7 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
   const [previewCaption, setPreviewCaption] = useState("");
 
   const configuredVideo = allowedMediaUrl(import.meta.env.VITE_MILA_HERO_VIDEO_URL);
-  const videoUrl = workflowReviewEnabled ? WORKFLOW_REVIEW_VIDEO : speakingReviewEnabled ? SPEAKING_REVIEW_VIDEO : bakedReviewCutEnabled ? BAKED_REVIEW_VIDEO : configuredVideo ?? (previewEnabled ? DRAFT_VIDEO : null);
+  const videoUrl = v8ProofCutEnabled ? V8_PROOF_CUT_VIDEO : workflowReviewEnabled ? WORKFLOW_REVIEW_VIDEO : speakingReviewEnabled ? SPEAKING_REVIEW_VIDEO : bakedReviewCutEnabled ? BAKED_REVIEW_VIDEO : configuredVideo ?? (previewEnabled ? DRAFT_VIDEO : null);
   // Review MP4 already includes kiss and wordmark; never render a second overlay.
   const overlayUrl = previewEnabled && !bakedReviewCutEnabled ? allowedMediaUrl(import.meta.env.VITE_KISS_OVERLAY_VIDEO_URL) : null;
   const canRenderVideo = canPlay && !reducedMotion && !videoFailed && !!videoUrl;
@@ -266,7 +269,7 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
         )}
       </div>
       <div className="cf-film-edge" aria-hidden="true">AN ORIGINAL DIGITAL MUSE — 001</div>
-      {previewEnabled && <span className="cf-preview-flag">UNAPPROVED MEDIA PREVIEW · NOT FOR RELEASE</span>}
+      {previewEnabled && <span className="cf-preview-flag">{v8ProofCutEnabled ? "V8 TEST CUT · SCRIPTED BROWSER · FANVUE NOT CONNECTED" : "UNAPPROVED MEDIA PREVIEW · NOT FOR RELEASE"}</span>}
     </div>
   );
 }
