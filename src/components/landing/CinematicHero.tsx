@@ -3,6 +3,10 @@ import "./cinematic-hero.css";
 
 const DRAFT_VIDEO = "https://d8j0ntlcm91z4.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/hf_20261105_053425_aec257c7-b66c-45d0-8aaa-aad101695819.mp4";
 const previewEnabled = import.meta.env.VITE_MILA_HERO_PREVIEW === "true";
+// An explicit preview-only URL switch: never surfaces unapproved baked media in production.
+const bakedReviewCutEnabled = previewEnabled && typeof window !== "undefined" &&
+  new URLSearchParams(window.location.search).get("milaFilm") === "v4";
+const BAKED_REVIEW_VIDEO = "https://d2ol7oe51mr4n9.cloudfront.net/user_33irX78ICVwRYWpFZ5l6a5vZbf5/04e6c525-3488-4e99-855e-6ce08e39c5bc.mp4";
 /** Calibrate after reviewing the actual Mila frame at the end of her kiss. */
 const configuredCue = Number(import.meta.env.VITE_MILA_KISS_CUE_SECONDS);
 export const KISS_CUE_SECONDS = Number.isFinite(configuredCue) && configuredCue >= 0 && configuredCue <= 7
@@ -80,11 +84,12 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
   const [visible, setVisible] = useState(true);
 
   const configuredVideo = allowedMediaUrl(import.meta.env.VITE_MILA_HERO_VIDEO_URL);
-  const videoUrl = configuredVideo ?? (previewEnabled ? DRAFT_VIDEO : null);
-  const overlayUrl = previewEnabled ? allowedMediaUrl(import.meta.env.VITE_KISS_OVERLAY_VIDEO_URL) : null;
+  const videoUrl = bakedReviewCutEnabled ? BAKED_REVIEW_VIDEO : configuredVideo ?? (previewEnabled ? DRAFT_VIDEO : null);
+  // Review MP4 already includes kiss and wordmark; never render a second overlay.
+  const overlayUrl = previewEnabled && !bakedReviewCutEnabled ? allowedMediaUrl(import.meta.env.VITE_KISS_OVERLAY_VIDEO_URL) : null;
   const canRenderVideo = canPlay && !reducedMotion && !videoFailed && !!videoUrl;
   const canPlayNow = canRenderVideo && visible;
-  const showCssFallback = !overlayUrl || overlayFailed;
+  const showCssFallback = !bakedReviewCutEnabled && (!overlayUrl || overlayFailed);
 
   useEffect(() => {
     try {
@@ -129,7 +134,7 @@ export default function CinematicHero({ posterUrl, canPlay }: CinematicHeroProps
 
   const onTimeUpdate = useCallback(() => {
     const base = videoRef.current;
-    if (!base) return;
+    if (!base || bakedReviewCutEnabled) return;
     const time = base.currentTime;
     // Handles video loop wraps as well as user seeking backwards.
     if (time < lastClockRef.current - 0.5) resetVisuals();
