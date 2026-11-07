@@ -133,3 +133,11 @@
  .cf-cinema h1{white-space:normal;overflow-wrap:normal}
  .cf-impact-wordmark .cf-wordmark{max-width:92vw}
 }
+
+/* V6 speaking test: timed captions stay legible over square-origin vertical contained film.
+   User gesture is required for audio; silent autoplay remains default. */
+.cf-mila-caption{position:absolute;z-index:7;left:50%;bottom:clamp(14px,5vh,52px);transform:translateX(-50%);width:min(88%,620px);margin:0;padding:10px 15px;border-radius:5px;background:#100d10dc;color:#fff7f0;font-size:clamp(14px,2vw,20px);line-height:1.35;text-align:center;text-wrap:balance;pointer-events:none;box-shadow:0 6px 24px #0005}
+.cf-sound{display:inline-flex;align-items:center;min-height:44px;margin-right:18px;color:#f6e9e4}
+.cf-sound:focus-visible,.cf-replay:focus-visible{outline:2px solid #eed9d1;outline-offset:4px}
+@media(max-width:760px){.cf-mila-caption{top:calc(52% - 60px);bottom:auto;max-width:92%;font-size:14px}.cf-sound{margin-right:12px}}
+@media(max-width:390px){.cf-mila-caption{top:calc(49% - 56px)}}
